@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- The app's normal theme. The dark window background stops a white flash before Compose draws. -->
+    <style name="Theme.Kitabu" parent="android:Theme.Material.NoActionBar">
+        <item name="android:windowBackground">@color/kitabu_background</item>
+    </style>
+
+    <!-- Shown for a moment while the app starts, then swapped for Theme.Kitabu -->
+    <style name="Theme.Kitabu.Starting" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/kitabu_background</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_splash_book</item>
+        <item name="postSplashScreenTheme">@style/Theme.Kitabu</item>
+        <!-- Without this, Android 13+ hides the icon when the app is started from Android Studio -->
+        <item name="android:windowSplashScreenBehavior" tools:targetApi="33">icon_preferred</item>
+    </style>
+</resources>

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Matches KitabuBackground in ui/theme/Color.kt; needed here because the splash screen is drawn before Compose starts -->
+    <color name="kitabu_background">#FF121826</color>
+</resources>

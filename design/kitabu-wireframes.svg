@@ -1,0 +1,242 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1680" height="1600" viewBox="0 0 1680 1600">
+<rect x="0" y="0" width="1680" height="1600" rx="0" fill="#F5F5F5" stroke="#F5F5F5" stroke-width="1"/>
+<text x="40" y="50" font-family="Inter, Arial, sans-serif" font-size="26" font-weight="600" fill="#222222" text-anchor="start">Kitabu - Version 1 (assignment scope)</text>
+<text x="40" y="840" font-family="Inter, Arial, sans-serif" font-size="26" font-weight="600" fill="#222222" text-anchor="start">Kitabu - Future vision (portfolio version)</text>
+<g id="V1 - 1 Catalog" transform="translate(40,110)">
+<text x="180" y="-16" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="600" fill="#222222" text-anchor="middle">V1 - 1 Catalog</text>
+<rect x="0" y="0" width="360" height="640" rx="28" fill="#FFFFFF" stroke="#888888" stroke-width="1"/>
+<text x="20" y="44" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="600" fill="#222222" text-anchor="start">Kitabu</text>
+<circle cx="328" cy="36" r="13" fill="#FFFFFF" stroke="#888888"/>
+<rect x="20" y="64" width="320" height="44" rx="8" fill="#FFFFFF" stroke="#BBBBBB" stroke-width="1"/>
+<text x="36" y="91" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#888888" text-anchor="start">Search title or author</text>
+<rect x="20" y="120" width="52" height="28" rx="14" fill="#DCE9FB" stroke="#DCE9FB" stroke-width="1"/>
+<text x="46" y="138" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="500" fill="#124A8C" text-anchor="middle">All</text>
+<rect x="80" y="120" width="92" height="28" rx="14" fill="#FFFFFF" stroke="#BBBBBB" stroke-width="1"/>
+<text x="126" y="138" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="500" fill="#333333" text-anchor="middle">MADB372</text>
+<rect x="180" y="120" width="60" height="28" rx="14" fill="#FFFFFF" stroke="#BBBBBB" stroke-width="1"/>
+<text x="210" y="138" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="500" fill="#333333" text-anchor="middle">DBS</text>
+<rect x="20" y="164" width="320" height="80" rx="8" fill="#FFFFFF" stroke="#BBBBBB" stroke-width="1"/>
+<text x="34" y="196" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="600" fill="#222222" text-anchor="start">Clean Code</text>
+<text x="34" y="220" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="400" fill="#666666" text-anchor="start">Robert C. Martin · MADB372</text>
+<rect x="240" y="176" width="88" height="24" rx="12" fill="#D7F0DD" stroke="#D7F0DD" stroke-width="1"/>
+<text x="284" y="192" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="500" fill="#1B6B33" text-anchor="middle">Available</text>
+<rect x="20" y="256" width="320" height="80" rx="8" fill="#FFFFFF" stroke="#BBBBBB" stroke-width="1"/>
+<text x="34" y="288" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="600" fill="#222222" text-anchor="start">Kotlin in Action</text>
+<text x="34" y="312" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="400" fill="#666666" text-anchor="start">Dmitry Jemerov · MADB372</text>
+<rect x="240" y="268" width="88" height="24" rx="12" fill="#FADADA" stroke="#FADADA" stroke-width="1"/>
+<text x="284" y="284" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="500" fill="#9B1C1C" text-anchor="middle">Borrowed</text>
+<rect x="20" y="348" width="320" height="80" rx="8" fill="#FFFFFF" stroke="#BBBBBB" stroke-width="1"/>
+<text x="34" y="380" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="600" fill="#222222" text-anchor="start">Database Systems</text>
+<text x="34" y="404" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="400" fill="#666666" text-anchor="start">A. Silberschatz · DBS</text>
+<rect x="240" y="360" width="88" height="24" rx="12" fill="#D7F0DD" stroke="#D7F0DD" stroke-width="1"/>
+<text x="284" y="376" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="500" fill="#1B6B33" text-anchor="middle">Available</text>
+<text x="180" y="460" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="400" fill="#888888" text-anchor="middle">list scrolls</text>
+<line x1="0" y1="584" x2="360" y2="584" stroke="#BBBBBB"/>
+<text x="90" y="616" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="500" fill="#124A8C" text-anchor="middle">Catalog</text>
+<text x="270" y="616" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="500" fill="#777777" text-anchor="middle">My bookings</text>
+</g>
+<g id="V1 - 2 Reserve sheet" transform="translate(440,110)">
+<text x="180" y="-16" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="600" fill="#222222" text-anchor="middle">V1 - 2 Reserve sheet</text>
+<rect x="0" y="0" width="360" height="640" rx="28" fill="#E4E4E4" stroke="#888888" stroke-width="1"/>
+<text x="180" y="140" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#777777" text-anchor="middle">Catalog dimmed behind</text>
+<rect x="0" y="300" width="360" height="340" rx="28" fill="#FFFFFF" stroke="#888888" stroke-width="1"/>
+<text x="24" y="346" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="600" fill="#222222" text-anchor="start">Clean Code</text>
+<text x="24" y="368" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="400" fill="#666666" text-anchor="start">Booking as Corbin</text>
+<text x="24" y="408" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="500" fill="#222222" text-anchor="start">Rental duration</text>
+<rect x="24" y="420" width="76" height="32" rx="16" fill="#DCE9FB" stroke="#DCE9FB" stroke-width="1"/>
+<text x="62" y="440" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="500" fill="#124A8C" text-anchor="middle">7 days</text>
+<rect x="108" y="420" width="80" height="32" rx="16" fill="#FFFFFF" stroke="#BBBBBB" stroke-width="1"/>
+<text x="148" y="440" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="500" fill="#333333" text-anchor="middle">14 days</text>
+<rect x="196" y="420" width="80" height="32" rx="16" fill="#FFFFFF" stroke="#BBBBBB" stroke-width="1"/>
+<text x="236" y="440" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="500" fill="#333333" text-anchor="middle">21 days</text>
+<text x="24" y="486" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#666666" text-anchor="start">Return by 14 Oct 2026</text>
+<rect x="24" y="540" width="312" height="48" rx="24" fill="#124A8C" stroke="#124A8C" stroke-width="1"/>
+<text x="180" y="570" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="600" fill="#FFFFFF" text-anchor="middle">Reserve</text>
+</g>
+<g id="V1 - 3 My bookings" transform="translate(840,110)">
+<text x="180" y="-16" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="600" fill="#222222" text-anchor="middle">V1 - 3 My bookings</text>
+<rect x="0" y="0" width="360" height="640" rx="28" fill="#FFFFFF" stroke="#888888" stroke-width="1"/>
+<text x="20" y="44" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="600" fill="#222222" text-anchor="start">My bookings</text>
+<rect x="20" y="64" width="320" height="150" rx="8" fill="#FFFFFF" stroke="#BBBBBB" stroke-width="1"/>
+<text x="34" y="96" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="600" fill="#222222" text-anchor="start">Clean Code</text>
+<rect x="240" y="76" width="88" height="24" rx="12" fill="#FCE8C8" stroke="#FCE8C8" stroke-width="1"/>
+<text x="284" y="92" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="500" fill="#8A5300" text-anchor="middle">Pending</text>
+<text x="34" y="118" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="400" fill="#666666" text-anchor="start">Reserved 7 Oct · Return by 14 Oct</text>
+<text x="34" y="142" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="500" fill="#222222" text-anchor="start">7 days left</text>
+<rect x="34" y="162" width="84" height="32" rx="16" fill="#FFFFFF" stroke="#BBBBBB" stroke-width="1"/>
+<text x="76" y="182" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="500" fill="#333333" text-anchor="middle">Collect</text>
+<rect x="126" y="162" width="84" height="32" rx="16" fill="#FFFFFF" stroke="#BBBBBB" stroke-width="1"/>
+<text x="168" y="182" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="500" fill="#333333" text-anchor="middle">Cancel</text>
+<rect x="20" y="230" width="320" height="150" rx="8" fill="#FFFFFF" stroke="#BBBBBB" stroke-width="1"/>
+<text x="34" y="262" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="600" fill="#222222" text-anchor="start">Kotlin in Action</text>
+<rect x="240" y="242" width="88" height="24" rx="12" fill="#D7F0DD" stroke="#D7F0DD" stroke-width="1"/>
+<text x="284" y="258" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="500" fill="#1B6B33" text-anchor="middle">Active</text>
+<text x="34" y="284" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="400" fill="#666666" text-anchor="start">Reserved 1 Oct · Return by 9 Oct</text>
+<text x="34" y="308" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="500" fill="#222222" text-anchor="start">2 days left</text>
+<rect x="34" y="328" width="84" height="32" rx="16" fill="#FFFFFF" stroke="#BBBBBB" stroke-width="1"/>
+<text x="76" y="348" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="500" fill="#333333" text-anchor="middle">Renew</text>
+<rect x="126" y="328" width="84" height="32" rx="16" fill="#FFFFFF" stroke="#BBBBBB" stroke-width="1"/>
+<text x="168" y="348" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="500" fill="#333333" text-anchor="middle">Return</text>
+<text x="180" y="410" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="400" fill="#888888" text-anchor="middle">tap a card for detail</text>
+<line x1="0" y1="584" x2="360" y2="584" stroke="#BBBBBB"/>
+<text x="90" y="616" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="500" fill="#777777" text-anchor="middle">Catalog</text>
+<text x="270" y="616" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="500" fill="#124A8C" text-anchor="middle">My bookings</text>
+</g>
+<g id="V1 - 4 Booking detail" transform="translate(1240,110)">
+<text x="180" y="-16" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="600" fill="#222222" text-anchor="middle">V1 - 4 Booking detail</text>
+<rect x="0" y="0" width="360" height="640" rx="28" fill="#FFFFFF" stroke="#888888" stroke-width="1"/>
+<text x="20" y="44" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="600" fill="#222222" text-anchor="start">←  Booking</text>
+<rect x="20" y="64" width="320" height="70" rx="8" fill="#FFFFFF" stroke="#BBBBBB" stroke-width="1"/>
+<text x="34" y="94" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="600" fill="#222222" text-anchor="start">Kotlin in Action</text>
+<text x="34" y="116" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="400" fill="#666666" text-anchor="start">Dmitry Jemerov · MADB372</text>
+<line x1="36" y1="176" x2="36" y2="276" stroke="#BBBBBB" stroke-width="2"/>
+<circle cx="36" cy="176" r="9" fill="#1B6B33"/>
+<text x="58" y="181" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#222222" text-anchor="start">Pending · reserved 1 Oct</text>
+<circle cx="36" cy="226" r="9" fill="#1B6B33"/>
+<text x="58" y="231" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#222222" text-anchor="start">Active · collected</text>
+<circle cx="36" cy="276" r="9" fill="#FFFFFF" stroke="#888888"/>
+<text x="58" y="281" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#888888" text-anchor="start">Returned</text>
+<rect x="20" y="320" width="320" height="100" rx="8" fill="#FFFFFF" stroke="#BBBBBB" stroke-width="1"/>
+<text x="34" y="350" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#666666" text-anchor="start">Reserved 1 Oct 2026</text>
+<text x="34" y="374" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#666666" text-anchor="start">Return by 9 Oct 2026</text>
+<text x="34" y="402" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="600" fill="#222222" text-anchor="start">2 days left</text>
+<rect x="20" y="444" width="100" height="36" rx="18" fill="#FFFFFF" stroke="#BBBBBB" stroke-width="1"/>
+<text x="70" y="466" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="500" fill="#333333" text-anchor="middle">Renew</text>
+<rect x="130" y="444" width="100" height="36" rx="18" fill="#FFFFFF" stroke="#BBBBBB" stroke-width="1"/>
+<text x="180" y="466" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="500" fill="#333333" text-anchor="middle">Return</text>
+</g>
+<g id="Future - 1 Login" transform="translate(40,900)">
+<text x="180" y="-16" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="600" fill="#222222" text-anchor="middle">Future - 1 Login</text>
+<rect x="0" y="0" width="360" height="640" rx="28" fill="#FFFFFF" stroke="#888888" stroke-width="1"/>
+<text x="180" y="200" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="600" fill="#222222" text-anchor="middle">Kitabu</text>
+<rect x="40" y="250" width="280" height="48" rx="8" fill="#FFFFFF" stroke="#BBBBBB" stroke-width="1"/>
+<text x="56" y="279" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#888888" text-anchor="start">Student number</text>
+<rect x="40" y="310" width="280" height="48" rx="8" fill="#FFFFFF" stroke="#BBBBBB" stroke-width="1"/>
+<text x="56" y="339" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#888888" text-anchor="start">Password</text>
+<rect x="40" y="390" width="280" height="48" rx="24" fill="#124A8C" stroke="#124A8C" stroke-width="1"/>
+<text x="180" y="420" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="600" fill="#FFFFFF" text-anchor="middle">Student log in</text>
+<rect x="40" y="450" width="280" height="48" rx="24" fill="#FFFFFF" stroke="#124A8C" stroke-width="1"/>
+<text x="180" y="480" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="600" fill="#124A8C" text-anchor="middle">Admin log in</text>
+</g>
+<g id="Future - 2 Student home" transform="translate(440,900)">
+<text x="180" y="-16" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="600" fill="#222222" text-anchor="middle">Future - 2 Student home</text>
+<rect x="0" y="0" width="360" height="640" rx="28" fill="#FFFFFF" stroke="#888888" stroke-width="1"/>
+<text x="20" y="44" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="600" fill="#222222" text-anchor="start">Home</text>
+<rect x="276" y="24" width="24" height="24" rx="4" fill="#FFFFFF" stroke="#BBBBBB" stroke-width="1"/>
+<text x="288" y="41" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="600" fill="#333333" text-anchor="middle">QR</text>
+<circle cx="328" cy="36" r="13" fill="#FFFFFF" stroke="#888888"/>
+<rect x="20" y="64" width="320" height="44" rx="8" fill="#FFFFFF" stroke="#BBBBBB" stroke-width="1"/>
+<text x="36" y="91" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#888888" text-anchor="start">Search</text>
+<text x="20" y="136" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="600" fill="#222222" text-anchor="start">My modules</text>
+<rect x="20" y="146" width="100" height="80" rx="8" fill="#FFFFFF" stroke="#BBBBBB" stroke-width="1"/>
+<text x="30" y="172" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#222222" text-anchor="start">MADB372</text>
+<text x="30" y="192" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="400" fill="#666666" text-anchor="start">3 left</text>
+<rect x="130" y="146" width="100" height="80" rx="8" fill="#FFFFFF" stroke="#BBBBBB" stroke-width="1"/>
+<text x="140" y="172" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#222222" text-anchor="start">DBS</text>
+<text x="140" y="192" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="400" fill="#666666" text-anchor="start">1 left</text>
+<rect x="240" y="146" width="100" height="80" rx="8" fill="#FFFFFF" stroke="#BBBBBB" stroke-width="1"/>
+<text x="250" y="172" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="600" fill="#222222" text-anchor="start">NET</text>
+<text x="250" y="192" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="400" fill="#666666" text-anchor="start">0 left</text>
+<text x="20" y="256" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="600" fill="#222222" text-anchor="start">All books</text>
+<rect x="20" y="266" width="100" height="80" rx="8" fill="#FFFFFF" stroke="#BBBBBB" stroke-width="1"/>
+<text x="30" y="292" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="500" fill="#222222" text-anchor="start">Clean Code</text>
+<rect x="130" y="266" width="100" height="80" rx="8" fill="#FFFFFF" stroke="#BBBBBB" stroke-width="1"/>
+<text x="140" y="292" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="500" fill="#222222" text-anchor="start">Design Patterns</text>
+<rect x="240" y="266" width="100" height="80" rx="8" fill="#FFFFFF" stroke="#BBBBBB" stroke-width="1"/>
+<text x="250" y="292" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="500" fill="#222222" text-anchor="start">AI: Modern</text>
+<text x="20" y="376" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="600" fill="#222222" text-anchor="start">My books</text>
+<rect x="20" y="386" width="320" height="56" rx="8" fill="#FFFFFF" stroke="#BBBBBB" stroke-width="1"/>
+<text x="34" y="420" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="600" fill="#222222" text-anchor="start">Kotlin in Action</text>
+<rect x="240" y="402" width="88" height="24" rx="12" fill="#FCE8C8" stroke="#FCE8C8" stroke-width="1"/>
+<text x="284" y="418" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="500" fill="#8A5300" text-anchor="middle">Handed in</text>
+<line x1="0" y1="584" x2="360" y2="584" stroke="#BBBBBB"/>
+<text x="60" y="616" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="500" fill="#124A8C" text-anchor="middle">Home</text>
+<text x="180" y="616" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="500" fill="#777777" text-anchor="middle">Bookings</text>
+<text x="300" y="616" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="500" fill="#777777" text-anchor="middle">Settings</text>
+</g>
+<g id="Future - 3 Calendar booking" transform="translate(840,900)">
+<text x="180" y="-16" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="600" fill="#222222" text-anchor="middle">Future - 3 Calendar booking</text>
+<rect x="0" y="0" width="360" height="640" rx="28" fill="#FFFFFF" stroke="#888888" stroke-width="1"/>
+<text x="20" y="44" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="600" fill="#222222" text-anchor="start">←  Clean Code</text>
+<text x="20" y="84" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#666666" text-anchor="start">2 of 5 copies free · October 2026</text>
+<rect x="24" y="104" width="40" height="40" rx="6" fill="#FADADA" stroke="#BBBBBB" stroke-width="1"/>
+<text x="44" y="129" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="500" fill="#9B1C1C" text-anchor="middle">5</text>
+<rect x="69" y="104" width="40" height="40" rx="6" fill="#FADADA" stroke="#BBBBBB" stroke-width="1"/>
+<text x="89" y="129" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="500" fill="#9B1C1C" text-anchor="middle">6</text>
+<rect x="114" y="104" width="40" height="40" rx="6" fill="#FADADA" stroke="#BBBBBB" stroke-width="1"/>
+<text x="134" y="129" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="500" fill="#9B1C1C" text-anchor="middle">7</text>
+<rect x="159" y="104" width="40" height="40" rx="6" fill="#FCE8C8" stroke="#BBBBBB" stroke-width="1"/>
+<text x="179" y="129" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="500" fill="#8A5300" text-anchor="middle">8</text>
+<rect x="204" y="104" width="40" height="40" rx="6" fill="#DCE9FB" stroke="#BBBBBB" stroke-width="1"/>
+<text x="224" y="129" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="500" fill="#124A8C" text-anchor="middle">9</text>
+<rect x="249" y="104" width="40" height="40" rx="6" fill="#DCE9FB" stroke="#BBBBBB" stroke-width="1"/>
+<text x="269" y="129" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="500" fill="#124A8C" text-anchor="middle">10</text>
+<rect x="294" y="104" width="40" height="40" rx="6" fill="#DCE9FB" stroke="#BBBBBB" stroke-width="1"/>
+<text x="314" y="129" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="500" fill="#124A8C" text-anchor="middle">11</text>
+<rect x="24" y="149" width="40" height="40" rx="6" fill="#DCE9FB" stroke="#BBBBBB" stroke-width="1"/>
+<text x="44" y="174" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="500" fill="#124A8C" text-anchor="middle">12</text>
+<rect x="69" y="149" width="40" height="40" rx="6" fill="#DCE9FB" stroke="#BBBBBB" stroke-width="1"/>
+<text x="89" y="174" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="500" fill="#124A8C" text-anchor="middle">13</text>
+<rect x="114" y="149" width="40" height="40" rx="6" fill="#DCE9FB" stroke="#BBBBBB" stroke-width="1"/>
+<text x="134" y="174" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="500" fill="#124A8C" text-anchor="middle">14</text>
+<rect x="159" y="149" width="40" height="40" rx="6" fill="#DCE9FB" stroke="#BBBBBB" stroke-width="1"/>
+<text x="179" y="174" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="500" fill="#124A8C" text-anchor="middle">15</text>
+<rect x="204" y="149" width="40" height="40" rx="6" fill="#FCE8C8" stroke="#BBBBBB" stroke-width="1"/>
+<text x="224" y="174" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="500" fill="#8A5300" text-anchor="middle">16</text>
+<rect x="249" y="149" width="40" height="40" rx="6" fill="#FFFFFF" stroke="#BBBBBB" stroke-width="1"/>
+<text x="269" y="174" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="500" fill="#333333" text-anchor="middle">17</text>
+<rect x="294" y="149" width="40" height="40" rx="6" fill="#FFFFFF" stroke="#BBBBBB" stroke-width="1"/>
+<text x="314" y="174" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="500" fill="#333333" text-anchor="middle">18</text>
+<rect x="24" y="194" width="40" height="40" rx="6" fill="#FFFFFF" stroke="#BBBBBB" stroke-width="1"/>
+<text x="44" y="219" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="500" fill="#333333" text-anchor="middle">19</text>
+<rect x="69" y="194" width="40" height="40" rx="6" fill="#FFFFFF" stroke="#BBBBBB" stroke-width="1"/>
+<text x="89" y="219" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="500" fill="#333333" text-anchor="middle">20</text>
+<rect x="114" y="194" width="40" height="40" rx="6" fill="#FADADA" stroke="#BBBBBB" stroke-width="1"/>
+<text x="134" y="219" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="500" fill="#9B1C1C" text-anchor="middle">21</text>
+<rect x="159" y="194" width="40" height="40" rx="6" fill="#FADADA" stroke="#BBBBBB" stroke-width="1"/>
+<text x="179" y="219" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="500" fill="#9B1C1C" text-anchor="middle">22</text>
+<rect x="204" y="194" width="40" height="40" rx="6" fill="#FADADA" stroke="#BBBBBB" stroke-width="1"/>
+<text x="224" y="219" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="500" fill="#9B1C1C" text-anchor="middle">23</text>
+<rect x="249" y="194" width="40" height="40" rx="6" fill="#FCE8C8" stroke="#BBBBBB" stroke-width="1"/>
+<text x="269" y="219" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="500" fill="#8A5300" text-anchor="middle">24</text>
+<rect x="294" y="194" width="40" height="40" rx="6" fill="#FFFFFF" stroke="#BBBBBB" stroke-width="1"/>
+<text x="314" y="219" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="500" fill="#333333" text-anchor="middle">25</text>
+<rect x="24" y="254" width="70" height="24" rx="12" fill="#FADADA" stroke="#FADADA" stroke-width="1"/>
+<text x="59" y="270" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="500" fill="#9B1C1C" text-anchor="middle">Taken</text>
+<rect x="102" y="254" width="70" height="24" rx="12" fill="#FCE8C8" stroke="#FCE8C8" stroke-width="1"/>
+<text x="137" y="270" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="500" fill="#8A5300" text-anchor="middle">Buffer</text>
+<rect x="180" y="254" width="70" height="24" rx="12" fill="#DCE9FB" stroke="#DCE9FB" stroke-width="1"/>
+<text x="215" y="270" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="500" fill="#124A8C" text-anchor="middle">Yours</text>
+<rect x="20" y="300" width="320" height="70" rx="8" fill="#FFFFFF" stroke="#BBBBBB" stroke-width="1"/>
+<text x="34" y="330" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="600" fill="#222222" text-anchor="start">9 Oct to 15 Oct</text>
+<text x="34" y="354" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="400" fill="#666666" text-anchor="start">Buffer day: 16 Oct</text>
+<rect x="24" y="540" width="312" height="48" rx="24" fill="#124A8C" stroke="#124A8C" stroke-width="1"/>
+<text x="180" y="570" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="600" fill="#FFFFFF" text-anchor="middle">Reserve slot</text>
+</g>
+<g id="Future - 4 Admin returns" transform="translate(1240,900)">
+<text x="180" y="-16" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="600" fill="#222222" text-anchor="middle">Future - 4 Admin returns</text>
+<rect x="0" y="0" width="360" height="640" rx="28" fill="#FFFFFF" stroke="#888888" stroke-width="1"/>
+<text x="20" y="44" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="600" fill="#222222" text-anchor="start">Returns queue</text>
+<rect x="20" y="64" width="320" height="120" rx="8" fill="#FFFFFF" stroke="#BBBBBB" stroke-width="1"/>
+<text x="34" y="96" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="600" fill="#222222" text-anchor="start">Kotlin in Action</text>
+<rect x="240" y="76" width="88" height="24" rx="12" fill="#FCE8C8" stroke="#FCE8C8" stroke-width="1"/>
+<text x="284" y="92" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="500" fill="#8A5300" text-anchor="middle">Waiting</text>
+<text x="34" y="118" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="400" fill="#666666" text-anchor="start">Corbin · handed in 9 Oct</text>
+<rect x="34" y="136" width="150" height="32" rx="16" fill="#FFFFFF" stroke="#BBBBBB" stroke-width="1"/>
+<text x="109" y="156" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="500" fill="#333333" text-anchor="middle">Confirm restocked</text>
+<rect x="20" y="200" width="320" height="120" rx="8" fill="#FFFFFF" stroke="#BBBBBB" stroke-width="1"/>
+<text x="34" y="232" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="600" fill="#222222" text-anchor="start">Design Patterns</text>
+<rect x="240" y="212" width="88" height="24" rx="12" fill="#FADADA" stroke="#FADADA" stroke-width="1"/>
+<text x="284" y="228" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="500" fill="#9B1C1C" text-anchor="middle">Overdue</text>
+<text x="34" y="254" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="400" fill="#666666" text-anchor="start">T. Nkosi · due 5 Oct</text>
+<rect x="34" y="272" width="130" height="32" rx="16" fill="#FFFFFF" stroke="#BBBBBB" stroke-width="1"/>
+<text x="99" y="292" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="500" fill="#333333" text-anchor="middle">Send reminder</text>
+<rect x="20" y="336" width="320" height="70" rx="8" fill="#FFFFFF" stroke="#BBBBBB" stroke-width="1"/>
+<text x="34" y="364" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="600" fill="#222222" text-anchor="start">Stock: 412 books</text>
+<text x="34" y="388" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="400" fill="#666666" text-anchor="start">38 on loan · 3 overdue</text>
+<line x1="0" y1="584" x2="360" y2="584" stroke="#BBBBBB"/>
+<text x="60" y="616" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="500" fill="#124A8C" text-anchor="middle">Returns</text>
+<text x="180" y="616" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="500" fill="#777777" text-anchor="middle">Stock</text>
+<text x="300" y="616" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="500" fill="#777777" text-anchor="middle">Users</text>
+</g>
+</svg>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- An open book, drawn small in the middle so the splash screen's circular mask does not crop it -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Left page -->
+    <path
+        android:fillColor="#4FC3F7"
+        android:pathData="M52,40 C46,35 38,34 30,36 L30,70 C38,68 46,69 52,74 Z" />
+    <!-- Right page -->
+    <path
+        android:fillColor="#81D4FA"
+        android:pathData="M56,40 C62,35 70,34 78,36 L78,70 C70,68 62,69 56,74 Z" />
+</vector>
