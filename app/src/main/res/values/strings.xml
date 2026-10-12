@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Kitabu</string>
+    <string name="app_tagline">STADIO Library · Reserve, collect, return</string>
 
     <!-- Navigation -->
     <string name="nav_catalog">Catalog</string>
@@ -10,7 +11,10 @@
     <string name="badge_available">Available</string>
     <string name="badge_borrowed">Borrowed</string>
     <string name="message_book_borrowed">This book is currently borrowed</string>
+    <string name="message_reserved">“%1$s” reserved for %2$d days. Collect it from the library desk.</string>
+    <string name="message_reserve_failed">Sorry, this book has just been reserved by someone else.</string>
     <string name="filter_all">All</string>
+    <string name="shelf_available_count">%1$d of %2$d available</string>
     <string name="no_books_search">No books match “%1$s”</string>
     <string name="no_books_filter">No books to show for this filter</string>
 
@@ -23,7 +27,19 @@
     <string name="action_cancel">Cancel</string>
 
     <!-- Bookings screen -->
-    <string name="bookings_empty">No bookings yet. Reserve a book from the catalog.</string>
+    <string name="bookings_empty">You have no bookings yet. Start in the Catalog tab below.</string>
+
+    <!-- "How Kitabu works" guide on the bookings screen -->
+    <string name="guide_title">How Kitabu works</string>
+    <string name="guide_show">Show</string>
+    <string name="guide_hide">Hide</string>
+    <string name="guide_intro">Kitabu lets you reserve STADIO library books from your phone and keeps track of when they are due, so you never travel to the library for a book that is already out.</string>
+    <string name="guide_step_find_title">1. Find a book</string>
+    <string name="guide_step_find_body">Search the Catalog tab. A green badge means the book is available.</string>
+    <string name="guide_step_reserve_title">2. Reserve and collect</string>
+    <string name="guide_step_reserve_body">Tap a book, choose 7, 14 or 21 days and reserve it. It shows here as Pending until you tap Collect at the library desk.</string>
+    <string name="guide_step_due_title">3. Keep track of your loan</string>
+    <string name="guide_step_due_body">Each booking shows the days left. Renew for 7 more days, or tap Return when you hand the book back.</string>
     <string name="booking_author_category">%1$s - %2$s</string>
     <string name="booking_booked_by">Booked by %1$s</string>
     <string name="booking_reserved_on">Reserved %1$s</string>

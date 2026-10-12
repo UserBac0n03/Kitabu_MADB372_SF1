@@ -14,6 +14,14 @@ object Schools {
     const val LAW = "Law"
     const val PUBLIC_SAFETY = "Policing and Law Enforcement"
 
+    /** Short names for the jump chips, the full ones don't fit. */
+    fun shortName(school: String): String = when (school) {
+        INFORMATION_TECHNOLOGY -> "IT"
+        ADMINISTRATION -> "Admin"
+        PUBLIC_SAFETY -> "Policing"
+        else -> school
+    }
+
     /** Every school, in the order the catalog lists them. */
     val all = listOf(
         INFORMATION_TECHNOLOGY,

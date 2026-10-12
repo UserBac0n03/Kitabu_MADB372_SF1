@@ -2,7 +2,6 @@ package com.stadiolinks.kitabu.ui.bookings
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -18,6 +17,9 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.Close
+import androidx.compose.material.icons.filled.DateRange
+import androidx.compose.material.icons.filled.Info
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -26,14 +28,20 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -47,6 +55,8 @@ import com.stadiolinks.kitabu.domain.Schools
 import com.stadiolinks.kitabu.ui.theme.KitabuTheme
 import com.stadiolinks.kitabu.ui.theme.SchoolCommerce
 import com.stadiolinks.kitabu.ui.theme.SchoolFashion
+import com.stadiolinks.kitabu.ui.theme.SchoolLaw
+import com.stadiolinks.kitabu.ui.theme.SchoolPublicSafety
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -76,18 +86,33 @@ fun BookingsScreen(
     onReturn: (BookingWithBook) -> Unit,
     onCancel: (BookingWithBook) -> Unit
 ) {
-    // Nothing booked: say so in the middle of the screen instead of showing a blank page
+    // Is the guide open. rememberSaveable so it doesn't reset on rotation
+    var guideExpanded by rememberSaveable { mutableStateOf(false) }
+
+    // Nothing booked yet, so show the guide open so new users know where to start
     if (bookings.isEmpty()) {
-        Box(
-            modifier = Modifier.fillMaxSize(),
-            contentAlignment = Alignment.Center
-        ) {
-            Text(text = stringResource(R.string.bookings_empty))
+        Column(modifier = Modifier.fillMaxSize()) {
+            HowItWorksCard(expanded = true, onToggle = null)
+            Text(
+                text = stringResource(R.string.bookings_empty),
+                style = MaterialTheme.typography.bodyLarge,
+                textAlign = TextAlign.Center,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(24.dp)
+            )
         }
         return
     }
 
     LazyColumn {
+        // Guide stays at the top but closed, so it doesn't get in the way once you've got bookings
+        item {
+            HowItWorksCard(
+                expanded = guideExpanded,
+                onToggle = { guideExpanded = !guideExpanded }
+            )
+        }
         items(bookings, key = { item -> item.booking.bookingId }) { item ->
             BookingCard(
                 item = item,
@@ -141,7 +166,10 @@ fun BookingCard(
                 } else {
                     pluralStringResource(R.plurals.booking_days_overdue, -daysLeft, -daysLeft)
                 },
-                style = MaterialTheme.typography.titleSmall
+                style = MaterialTheme.typography.titleSmall,
+                fontWeight = FontWeight.Bold,
+                // Green = fine, orange = due soon, red = overdue
+                color = deadlineColor(daysLeft)
             )
 
             // A booking waiting for pickup can be collected or cancelled.
@@ -186,7 +214,92 @@ fun BookingCard(
     }
 }
 
-/** A small icon in front of a button's label, sized and spaced the Material way. */
+/**
+ * "How Kitabu works" card for new users: what the app is for and the 3 steps.
+ * Pass null for [onToggle] to keep it open with no Show/Hide button.
+ */
+@Composable
+private fun HowItWorksCard(expanded: Boolean, onToggle: (() -> Unit)?) {
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(8.dp)
+    ) {
+        Column(modifier = Modifier.padding(16.dp)) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Icon(
+                    imageVector = Icons.Filled.Info,
+                    contentDescription = null,
+                    tint = MaterialTheme.colorScheme.primary
+                )
+                Spacer(modifier = Modifier.width(8.dp))
+                Text(
+                    text = stringResource(R.string.guide_title),
+                    style = MaterialTheme.typography.titleMedium,
+                    modifier = Modifier.weight(1f)
+                )
+                if (onToggle != null) {
+                    TextButton(onClick = onToggle) {
+                        Text(stringResource(if (expanded) R.string.guide_hide else R.string.guide_show))
+                    }
+                }
+            }
+            if (expanded) {
+                Text(
+                    text = stringResource(R.string.guide_intro),
+                    style = MaterialTheme.typography.bodyMedium,
+                    modifier = Modifier.padding(top = 8.dp, bottom = 8.dp)
+                )
+                GuideStep(
+                    icon = Icons.Filled.Search,
+                    title = R.string.guide_step_find_title,
+                    body = R.string.guide_step_find_body
+                )
+                GuideStep(
+                    icon = Icons.Filled.CheckCircle,
+                    title = R.string.guide_step_reserve_title,
+                    body = R.string.guide_step_reserve_body
+                )
+                GuideStep(
+                    icon = Icons.Filled.DateRange,
+                    title = R.string.guide_step_due_title,
+                    body = R.string.guide_step_due_body
+                )
+            }
+        }
+    }
+}
+
+/** One step in the guide: icon, title, one line of text. */
+@Composable
+private fun GuideStep(icon: ImageVector, title: Int, body: Int) {
+    Row(modifier = Modifier.padding(vertical = 6.dp)) {
+        Icon(
+            imageVector = icon,
+            contentDescription = null,
+            tint = SchoolCommerce,
+            modifier = Modifier.size(24.dp)
+        )
+        Spacer(modifier = Modifier.width(12.dp))
+        Column {
+            Text(text = stringResource(title), style = MaterialTheme.typography.titleSmall)
+            Text(
+                text = stringResource(body),
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+        }
+    }
+}
+
+/** Colour for the days-left line, so you can see at a glance if a book's nearly due. */
+private fun deadlineColor(daysLeft: Int): Color = when {
+    daysLeft < 0 -> SchoolPublicSafety
+    daysLeft <= BookingRules.DUE_SOON_DAYS -> SchoolLaw
+    else -> SchoolCommerce
+}
+
+/** Icon in front of a button label. Uses Material's icon size and spacing. */
 @Composable
 private fun ButtonIcon(icon: ImageVector) {
     Icon(
@@ -224,6 +337,20 @@ fun StatusBadge(status: BookingStatus) {
 /** Turns a stored timestamp into a readable date such as "9 Oct 2026". */
 private fun formatDate(timestamp: Long): String =
     SimpleDateFormat("d MMM yyyy", Locale.getDefault()).format(Date(timestamp))
+
+@Preview(showBackground = true)
+@Composable
+fun BookingsEmptyPreview() {
+    KitabuTheme {
+        BookingsScreen(
+            bookings = emptyList(),
+            onCollect = {},
+            onRenew = {},
+            onReturn = {},
+            onCancel = {}
+        )
+    }
+}
 
 @Preview(showBackground = true)
 @Composable

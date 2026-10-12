@@ -23,7 +23,7 @@ class LibraryRepository(
     /** Books whose title or author contains [query]. An empty query returns every book. */
     fun searchBooks(query: String): Flow<List<BookEntity>> = bookDao.searchBooks(query)
 
-    /** Only available books (true) or only borrowed books (false). */
+    /** true = available books only, false = borrowed only. */
     fun getBooksByAvailability(isAvailable: Boolean): Flow<List<BookEntity>> =
         bookDao.getBooksByAvailability(isAvailable)
 
@@ -49,7 +49,7 @@ class LibraryRepository(
 
     /** The student has picked the book up: PENDING becomes ACTIVE. */
     suspend fun collectBooking(bookingId: Long) {
-        bookingDao.updateStatus(bookingId, BookingStatus.ACTIVE)
+        bookingDao.updateStatus(bookingId, fromStatus = BookingStatus.PENDING, toStatus = BookingStatus.ACTIVE)
     }
 
     /** Returns false if renewing would pass the maximum loan length. */

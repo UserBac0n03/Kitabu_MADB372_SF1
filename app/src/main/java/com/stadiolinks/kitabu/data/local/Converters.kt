@@ -5,8 +5,8 @@ import com.stadiolinks.kitabu.data.local.entity.BookingStatus
 import java.util.Date
 
 /**
- * Maps types SQLite cannot store directly onto ones it can.
- * [BookingStatus] is stored as its name (TEXT); a [Date] as epoch milliseconds (INTEGER).
+ * SQLite can't store enums or dates, so these convert them.
+ * BookingStatus goes in as its name (TEXT), Date as millis (INTEGER).
  */
 class Converters {
 

@@ -34,8 +34,12 @@ interface BookingDao {
     @Query("UPDATE bookings SET returnDeadline = :newDeadline WHERE bookingId = :bookingId")
     suspend fun updateReturnDeadline(bookingId: Long, newDeadline: Long)
 
-    @Query("UPDATE bookings SET status = :status WHERE bookingId = :bookingId")
-    suspend fun updateStatus(bookingId: Long, status: BookingStatus)
+    /**
+     * Only changes the status if it's currently [fromStatus].
+     * Returns rows changed, so 0 means it was in some other state and nothing happened.
+     */
+    @Query("UPDATE bookings SET status = :toStatus WHERE bookingId = :bookingId AND status = :fromStatus")
+    suspend fun updateStatus(bookingId: Long, fromStatus: BookingStatus, toStatus: BookingStatus): Int
 
     /** Returns the number of rows changed: 0 means the book was not in the expected state. */
     @Query(
@@ -69,8 +73,9 @@ interface BookingDao {
 
     @Transaction
     suspend fun returnBook(bookingId: Long, bookId: Long) {
-        updateStatus(bookingId, BookingStatus.RETURNED)
-        setBookAvailability(bookId, isAvailable = true)
+        // Only ACTIVE loans can be returned. Don't free the book if nothing changed
+        val returned = updateStatus(bookingId, fromStatus = BookingStatus.ACTIVE, toStatus = BookingStatus.RETURNED)
+        if (returned > 0) setBookAvailability(bookId, isAvailable = true)
     }
 
     @Transaction

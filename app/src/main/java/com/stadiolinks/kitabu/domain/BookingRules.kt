@@ -15,6 +15,9 @@ object BookingRules {
     /** The longest a book may be kept, counted from the day it was reserved. */
     const val MAX_LOAN_DAYS = 42
 
+    /** 3 days or less left counts as due soon (orange on the bookings screen). */
+    const val DUE_SOON_DAYS = 3
+
     const val MIN_NAME_LENGTH = 2
     const val MAX_NAME_LENGTH = 40
 

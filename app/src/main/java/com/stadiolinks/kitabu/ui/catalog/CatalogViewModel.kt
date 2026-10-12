@@ -9,6 +9,8 @@ import com.stadiolinks.kitabu.KitabuApplication
 import com.stadiolinks.kitabu.data.local.entity.BookEntity
 import com.stadiolinks.kitabu.data.repository.LibraryRepository
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -16,11 +18,18 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
-/** Which books the catalog shows, picked with the chips under the search box. */
+/** Which books to show. Set by the chips under the search box. */
 enum class AvailabilityFilter { ALL, AVAILABLE, BORROWED }
+
+/** What happened when you tried to reserve. The screen turns it into the pop-up. */
+sealed interface ReserveResult {
+    data class Reserved(val title: String, val days: Int) : ReserveResult
+    data object Failed : ReserveResult
+}
 
 /** Holds the catalog screen's state and survives screen rotation. */
 class CatalogViewModel(
@@ -31,14 +40,14 @@ class CatalogViewModel(
     private val _query = MutableStateFlow("")
     val query: StateFlow<String> = _query.asStateFlow()
 
-    // The chosen availability chip
+    // Which chip is selected
     private val _filter = MutableStateFlow(AvailabilityFilter.ALL)
     val filter: StateFlow<AvailabilityFilter> = _filter.asStateFlow()
 
     /**
-     * The books to show. Re-queries the database whenever the search text or the chip changes.
-     * With no search text, Room filters by availability directly (getBooksByAvailability);
-     * while searching, the LIKE results are narrowed to the chosen availability.
+     * Books to show. Re-queries whenever the search text or chip changes.
+     * No search text: Room filters by availability (getBooksByAvailability).
+     * Searching: take the LIKE results and filter them by the chip.
      */
     @OptIn(ExperimentalCoroutinesApi::class)
     val books: StateFlow<List<BookEntity>> = combine(_query, _filter) { text, chip -> text.trim() to chip }
@@ -69,10 +78,19 @@ class CatalogViewModel(
         _filter.value = filter
     }
 
-    fun reserveBook(bookId: Long, userName: String, days: Int) {
+    // One-off pop-up messages. Channel so each one only gets delivered once,
+    // otherwise it'd show again after a rotation.
+    private val _reserveResults = Channel<ReserveResult>(Channel.BUFFERED)
+    val reserveResults: Flow<ReserveResult> = _reserveResults.receiveAsFlow()
+
+    fun reserveBook(book: BookEntity, userName: String, days: Int) {
         // launch runs the database write in the background, off the main thread
         viewModelScope.launch {
-            repository.reserveBook(bookId, userName, days)
+            val reserved = repository.reserveBook(book.bookId, userName, days)
+            // Send the real result, reserveBook returns false if someone else got it first
+            _reserveResults.send(
+                if (reserved) ReserveResult.Reserved(book.title, days) else ReserveResult.Failed
+            )
         }
     }
 

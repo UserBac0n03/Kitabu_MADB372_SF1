@@ -1,11 +1,13 @@
 package com.stadiolinks.kitabu.ui.navigation
 
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
@@ -24,6 +26,8 @@ import androidx.navigation.compose.rememberNavController
 import com.stadiolinks.kitabu.R
 import com.stadiolinks.kitabu.ui.bookings.BookingsRoute
 import com.stadiolinks.kitabu.ui.catalog.CatalogRoute
+import com.stadiolinks.kitabu.ui.theme.StadioColourStrip
+
 object Routes {
     const val CATALOG = "catalog"
     const val BOOKINGS = "bookings"
@@ -39,16 +43,29 @@ fun KitabuApp() {
 
     Scaffold(
         topBar = {
-            TopAppBar(
-                title = {
-                    // The title follows whichever screen is open
-                    Text(
-                        text = stringResource(
-                            if (currentRoute == Routes.BOOKINGS) R.string.nav_bookings else R.string.app_name
-                        )
-                    )
-                }
-            )
+            Column {
+                TopAppBar(
+                    title = {
+                        Column {
+                            // The title follows whichever screen is open
+                            Text(
+                                text = stringResource(
+                                    if (currentRoute == Routes.BOOKINGS) R.string.nav_bookings else R.string.app_name
+                                ),
+                                style = MaterialTheme.typography.titleLarge
+                            )
+                            // STADIO line under the title
+                            Text(
+                                text = stringResource(R.string.app_tagline),
+                                style = MaterialTheme.typography.labelSmall,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant
+                            )
+                        }
+                    }
+                )
+                // Strip of all 8 school colours under the bar
+                StadioColourStrip()
+            }
         },
         bottomBar = {
             NavigationBar {

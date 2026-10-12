@@ -9,15 +9,20 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
+import androidx.compose.material3.AssistChip
 import androidx.compose.material3.Card
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.MaterialTheme
@@ -25,10 +30,12 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -52,6 +59,7 @@ import com.stadiolinks.kitabu.ui.theme.KitabuTheme
 import com.stadiolinks.kitabu.ui.theme.StatusAvailable
 import com.stadiolinks.kitabu.ui.theme.StatusBorrowed
 import com.stadiolinks.kitabu.ui.theme.schoolColor
+import kotlinx.coroutines.launch
 
 /**
  * The link between the catalog and its ViewModel.
@@ -66,6 +74,19 @@ fun CatalogRoute(
     val books by viewModel.books.collectAsStateWithLifecycle()
     val query by viewModel.query.collectAsStateWithLifecycle()
     val filter by viewModel.filter.collectAsStateWithLifecycle()
+    val context = LocalContext.current
+
+    // Wait for the DB to say if the reservation worked before showing the pop-up
+    LaunchedEffect(viewModel) {
+        viewModel.reserveResults.collect { result ->
+            val message = when (result) {
+                is ReserveResult.Reserved ->
+                    context.getString(R.string.message_reserved, result.title, result.days)
+                ReserveResult.Failed -> context.getString(R.string.message_reserve_failed)
+            }
+            Toast.makeText(context, message, Toast.LENGTH_LONG).show()
+        }
+    }
 
     CatalogScreen(
         books = books,
@@ -88,7 +109,7 @@ fun CatalogScreen(
     filter: AvailabilityFilter,
     onQueryChange: (String) -> Unit,
     onFilterChange: (AvailabilityFilter) -> Unit,
-    onReserve: (bookId: Long, userName: String, days: Int) -> Unit
+    onReserve: (book: BookEntity, userName: String, days: Int) -> Unit
 ) {
     // The book whose reserve dialog is open. Null means no dialog is showing.
     var selectedBook by remember { mutableStateOf<BookEntity?>(null) }
@@ -104,6 +125,14 @@ fun CatalogScreen(
         }
     }
 
+    // Up here, not in the if below, otherwise the scroll position resets after a search
+    val shelfListState = rememberLazyListState()
+    val scope = rememberCoroutineScope()
+
+    // Group by school once when the list changes, instead of filtering again for every shelf
+    val booksBySchool = remember(books) { books.groupBy { it.category } }
+    val schoolsWithBooks = remember(booksBySchool) { Schools.all.filter { it in booksBySchool } }
+
     Column {
         OutlinedTextField(
             value = query,
@@ -115,7 +144,7 @@ fun CatalogScreen(
                 .padding(8.dp)
         )
 
-        // All / Available / Borrowed: the chosen chip is highlighted
+        // All / Available / Borrowed chips
         Row(
             horizontalArrangement = Arrangement.spacedBy(8.dp),
             modifier = Modifier.padding(horizontal = 8.dp)
@@ -131,17 +160,25 @@ fun CatalogScreen(
 
         // The key lets the list tell books apart, so it only redraws the card that changed
         if (books.isEmpty()) {
-            // Nothing matches: say so instead of showing a blank screen
+            // Nothing to show, so say that instead of a blank screen
             NoResults(query = query)
         } else if (query.isBlank()) {
-            // Browsing: one shelf per school, skipping schools with no matching books
-            val schoolsWithBooks = Schools.all.filter { school -> books.any { it.category == school } }
-            LazyColumn {
-                items(schoolsWithBooks) { school ->
-                    val schoolBooks = books.filter { it.category == school }
+            // Browsing: one shelf per school, skip schools with no books
+
+            // Tap a school to jump to its shelf
+            SchoolJumpMenu(
+                schools = schoolsWithBooks,
+                onSchoolClick = { index ->
+                    // animateScrollToItem is a suspend fun, so it needs a coroutine
+                    scope.launch { shelfListState.animateScrollToItem(index) }
+                }
+            )
+            LazyColumn(state = shelfListState) {
+                // School name as the key so shelves don't all redraw when the filter changes
+                items(schoolsWithBooks, key = { school -> school }) { school ->
                     BookShelf(
                         schoolName = school,
-                        books = schoolBooks,
+                        books = booksBySchool.getValue(school),
                         onBooksClick = onBooksClick
                     )
                 }
@@ -168,7 +205,7 @@ fun CatalogScreen(
             book = book,
             onDismiss = { selectedBook = null },
             onReserve = { userName, days ->
-                onReserve(book.bookId, userName, days)
+                onReserve(book, userName, days)
                 selectedBook = null
             }
         )
@@ -201,7 +238,8 @@ fun BookCard(
                 AvailabilityBadge(isAvailable = isAvailable)
             }
             Text(text = author, style = MaterialTheme.typography.bodyMedium)
-            Text(text = category,
+            Text(
+                text = category,
                 style = MaterialTheme.typography.bodyMedium,
                 color = schoolColor(category)
             )
@@ -209,14 +247,37 @@ fun BookCard(
     }
 }
 
-/** The text on each availability chip. */
+/** Row of chips, one per school, with a dot in the school's colour. */
+@Composable
+private fun SchoolJumpMenu(schools: List<String>, onSchoolClick: (index: Int) -> Unit) {
+    LazyRow(
+        horizontalArrangement = Arrangement.spacedBy(6.dp),
+        contentPadding = PaddingValues(horizontal = 8.dp)
+    ) {
+        itemsIndexed(schools) { index, school ->
+            AssistChip(
+                onClick = { onSchoolClick(index) },
+                label = { Text(Schools.shortName(school)) },
+                leadingIcon = {
+                    Box(
+                        modifier = Modifier
+                            .size(10.dp)
+                            .background(schoolColor(school), CircleShape)
+                    )
+                }
+            )
+        }
+    }
+}
+
+/** Label for each availability chip. */
 private fun filterLabel(filter: AvailabilityFilter): Int = when (filter) {
     AvailabilityFilter.ALL -> R.string.filter_all
     AvailabilityFilter.AVAILABLE -> R.string.badge_available
     AvailabilityFilter.BORROWED -> R.string.badge_borrowed
 }
 
-/** Shown when the search or the chosen chip leaves no books to list. */
+/** Shown when the search or filter leaves nothing to list. */
 @Composable
 private fun NoResults(query: String) {
     Box(
@@ -369,7 +430,7 @@ fun BookCover(
 
     }
 }
-/** One school's books on a sideways-scrolling shelf, under the school's name. */
+/** A school's books on a sideways shelf, with the school name above. */
 @Composable
 fun BookShelf(
     schoolName: String,
@@ -380,13 +441,29 @@ fun BookShelf(
         modifier = Modifier
             .padding(vertical = 10.dp)
     ) {
-        Text(
-            text = schoolName,
-            style = MaterialTheme.typography.titleMedium,
-            color = schoolColor(schoolName),
+        // School name on the left, "x of y available" on the right
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier
+                .fillMaxWidth()
                 .padding(horizontal = 10.dp, vertical = 4.dp)
-        )
+        ) {
+            Text(
+                text = schoolName,
+                style = MaterialTheme.typography.titleMedium,
+                color = schoolColor(schoolName),
+                modifier = Modifier.weight(1f)
+            )
+            Text(
+                text = stringResource(
+                    R.string.shelf_available_count,
+                    books.count { it.isAvailable },
+                    books.size
+                ),
+                style = MaterialTheme.typography.labelMedium,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+        }
         LazyRow(contentPadding = PaddingValues(horizontal = 10.dp)) {
             items(books, key = { book -> book.bookId }) { book ->
                 BookCover(
@@ -441,7 +518,7 @@ fun BookShelfPreview() {
         BookShelf(
             schoolName = Schools.INFORMATION_TECHNOLOGY,
             books = itBooks,
-            onBooksClick ={}
+            onBooksClick = {}
         )
     }
 }
