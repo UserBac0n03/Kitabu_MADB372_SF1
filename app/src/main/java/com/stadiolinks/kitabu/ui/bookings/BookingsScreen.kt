@@ -5,14 +5,24 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Check
+import androidx.compose.material.icons.filled.CheckCircle
+import androidx.compose.material.icons.filled.Close
+import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
@@ -21,6 +31,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -32,6 +43,7 @@ import com.stadiolinks.kitabu.data.local.entity.BookingEntity
 import com.stadiolinks.kitabu.data.local.entity.BookingStatus
 import com.stadiolinks.kitabu.data.local.model.BookingWithBook
 import com.stadiolinks.kitabu.domain.BookingRules
+import com.stadiolinks.kitabu.domain.Schools
 import com.stadiolinks.kitabu.ui.theme.KitabuTheme
 import com.stadiolinks.kitabu.ui.theme.SchoolCommerce
 import com.stadiolinks.kitabu.ui.theme.SchoolFashion
@@ -141,18 +153,22 @@ fun BookingCard(
                 when (booking.status) {
                     BookingStatus.PENDING -> {
                         Button(onClick = onCollect) {
+                            ButtonIcon(Icons.Filled.CheckCircle)
                             Text(stringResource(R.string.action_collect))
                         }
                         OutlinedButton(onClick = onCancel) {
+                            ButtonIcon(Icons.Filled.Close)
                             Text(stringResource(R.string.action_cancel))
                         }
                     }
                     BookingStatus.ACTIVE -> {
                         // Greyed out once the book has been kept for the longest time allowed
                         Button(onClick = onRenew, enabled = canRenew) {
+                            ButtonIcon(Icons.Filled.Refresh)
                             Text(stringResource(R.string.action_renew))
                         }
                         OutlinedButton(onClick = onReturn) {
+                            ButtonIcon(Icons.Filled.Check)
                             Text(stringResource(R.string.action_return))
                         }
                     }
@@ -168,6 +184,17 @@ fun BookingCard(
             }
         }
     }
+}
+
+/** A small icon in front of a button's label, sized and spaced the Material way. */
+@Composable
+private fun ButtonIcon(icon: ImageVector) {
+    Icon(
+        imageVector = icon,
+        contentDescription = null,
+        modifier = Modifier.size(ButtonDefaults.IconSize)
+    )
+    Spacer(modifier = Modifier.width(ButtonDefaults.IconSpacing))
 }
 
 /** A coloured pill showing the stage of a booking: yellow while waiting, green once collected. */
@@ -212,7 +239,7 @@ fun BookingsScreenPreview() {
         ),
         title = "Clean Code",
         author = "Robert C. Martin",
-        category = "Software Engineering"
+        category = Schools.INFORMATION_TECHNOLOGY
     )
     KitabuTheme {
         BookingsScreen(

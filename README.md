@@ -99,7 +99,7 @@ Wireframes were drawn before development (`design/kitabu-wireframes.svg`).
 ### Run the app
 1. Clone the repository:
    ```bash
-   git clone https://github.com/<username>/Kitabu_MADB372_SF1.git
+   git clone https://github.com/UserBac0n03/Kitabu_MADB372_SF1.git
    ```
 2. Open the folder in Android Studio (**File → Open**).
 3. Let Gradle sync finish (dependencies are in `gradle/libs.versions.toml`).

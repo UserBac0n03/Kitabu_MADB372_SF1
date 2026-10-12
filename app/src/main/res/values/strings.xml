@@ -10,6 +10,9 @@
     <string name="badge_available">Available</string>
     <string name="badge_borrowed">Borrowed</string>
     <string name="message_book_borrowed">This book is currently borrowed</string>
+    <string name="filter_all">All</string>
+    <string name="no_books_search">No books match “%1$s”</string>
+    <string name="no_books_filter">No books to show for this filter</string>
 
     <!-- Reserve dialog -->
     <string name="reserve_name_label">Your name</string>

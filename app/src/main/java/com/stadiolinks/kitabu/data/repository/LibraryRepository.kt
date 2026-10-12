@@ -23,6 +23,10 @@ class LibraryRepository(
     /** Books whose title or author contains [query]. An empty query returns every book. */
     fun searchBooks(query: String): Flow<List<BookEntity>> = bookDao.searchBooks(query)
 
+    /** Only available books (true) or only borrowed books (false). */
+    fun getBooksByAvailability(isAvailable: Boolean): Flow<List<BookEntity>> =
+        bookDao.getBooksByAvailability(isAvailable)
+
     /** Bookings that are not yet returned, each with its book's details. */
     fun getBookings(): Flow<List<BookingWithBook>> = bookingDao.getBookingsWithBook()
 

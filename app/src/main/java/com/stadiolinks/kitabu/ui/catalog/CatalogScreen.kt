@@ -1,13 +1,13 @@
 package com.stadiolinks.kitabu.ui.catalog
 
 import android.widget.Toast
-import androidx.collection.emptyLongSet
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -37,6 +37,7 @@ import androidx.compose.ui.graphics.luminance
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -48,8 +49,8 @@ import com.stadiolinks.kitabu.data.local.entity.BookEntity
 import com.stadiolinks.kitabu.domain.BookingRules
 import com.stadiolinks.kitabu.domain.Schools
 import com.stadiolinks.kitabu.ui.theme.KitabuTheme
-import com.stadiolinks.kitabu.ui.theme.SchoolCommerce
-import com.stadiolinks.kitabu.ui.theme.SchoolLaw
+import com.stadiolinks.kitabu.ui.theme.StatusAvailable
+import com.stadiolinks.kitabu.ui.theme.StatusBorrowed
 import com.stadiolinks.kitabu.ui.theme.schoolColor
 
 /**
@@ -64,11 +65,14 @@ fun CatalogRoute(
     // collectAsStateWithLifecycle stops listening while the app is in the background
     val books by viewModel.books.collectAsStateWithLifecycle()
     val query by viewModel.query.collectAsStateWithLifecycle()
+    val filter by viewModel.filter.collectAsStateWithLifecycle()
 
     CatalogScreen(
         books = books,
         query = query,
+        filter = filter,
         onQueryChange = viewModel::onQueryChange,
+        onFilterChange = viewModel::onFilterChange,
         onReserve = viewModel::reserveBook
     )
 }
@@ -81,7 +85,9 @@ fun CatalogRoute(
 fun CatalogScreen(
     books: List<BookEntity>,
     query: String,
+    filter: AvailabilityFilter,
     onQueryChange: (String) -> Unit,
+    onFilterChange: (AvailabilityFilter) -> Unit,
     onReserve: (bookId: Long, userName: String, days: Int) -> Unit
 ) {
     // The book whose reserve dialog is open. Null means no dialog is showing.
@@ -89,11 +95,11 @@ fun CatalogScreen(
     val context = LocalContext.current
     val focusManager = LocalFocusManager.current
     val borrowedMessage = stringResource(R.string.message_book_borrowed)
-    val onBooksClick: (BookEntity) -> Unit ={ book ->
+    val onBooksClick: (BookEntity) -> Unit = { book ->
         focusManager.clearFocus()
-        if(book.isAvailable){
+        if (book.isAvailable) {
             selectedBook = book
-            } else {
+        } else {
             Toast.makeText(context, borrowedMessage, Toast.LENGTH_SHORT).show()
         }
     }
@@ -109,11 +115,29 @@ fun CatalogScreen(
                 .padding(8.dp)
         )
 
+        // All / Available / Borrowed: the chosen chip is highlighted
+        Row(
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
+            modifier = Modifier.padding(horizontal = 8.dp)
+        ) {
+            AvailabilityFilter.entries.forEach { option ->
+                FilterChip(
+                    selected = option == filter,
+                    onClick = { onFilterChange(option) },
+                    label = { Text(stringResource(filterLabel(option))) }
+                )
+            }
+        }
+
         // The key lets the list tell books apart, so it only redraws the card that changed
-        if (query.isBlank()) {
-            // Browsing: one shelf per school
+        if (books.isEmpty()) {
+            // Nothing matches: say so instead of showing a blank screen
+            NoResults(query = query)
+        } else if (query.isBlank()) {
+            // Browsing: one shelf per school, skipping schools with no matching books
+            val schoolsWithBooks = Schools.all.filter { school -> books.any { it.category == school } }
             LazyColumn {
-                items(Schools.all) { school ->
+                items(schoolsWithBooks) { school ->
                     val schoolBooks = books.filter { it.category == school }
                     BookShelf(
                         schoolName = school,
@@ -185,6 +209,34 @@ fun BookCard(
     }
 }
 
+/** The text on each availability chip. */
+private fun filterLabel(filter: AvailabilityFilter): Int = when (filter) {
+    AvailabilityFilter.ALL -> R.string.filter_all
+    AvailabilityFilter.AVAILABLE -> R.string.badge_available
+    AvailabilityFilter.BORROWED -> R.string.badge_borrowed
+}
+
+/** Shown when the search or the chosen chip leaves no books to list. */
+@Composable
+private fun NoResults(query: String) {
+    Box(
+        contentAlignment = Alignment.Center,
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(32.dp)
+    ) {
+        Text(
+            text = if (query.isBlank()) {
+                stringResource(R.string.no_books_filter)
+            } else {
+                stringResource(R.string.no_books_search, query.trim())
+            },
+            style = MaterialTheme.typography.bodyLarge,
+            textAlign = TextAlign.Center
+        )
+    }
+}
+
 /** A coloured pill: green when the book can be reserved, orange when someone has it. */
 @Composable
 fun AvailabilityBadge(isAvailable: Boolean) {
@@ -192,7 +244,7 @@ fun AvailabilityBadge(isAvailable: Boolean) {
         // Background before padding, so the colour reaches around the text
         modifier = Modifier
             .background(
-                color = if (isAvailable) SchoolCommerce else SchoolLaw,
+                color = if (isAvailable) StatusAvailable else StatusBorrowed,
                 shape = RoundedCornerShape(50)
             )
             .padding(horizontal = 10.dp, vertical = 4.dp)
@@ -304,17 +356,26 @@ fun BookCover(
                 style = MaterialTheme.typography.bodySmall,
                 maxLines = 1
             )
+            Text(
+                text = category,
+                style = MaterialTheme.typography.labelSmall,
+                color = coverColor,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
+                modifier = Modifier.padding(bottom = 4.dp)
+            )
             AvailabilityBadge(isAvailable = isAvailable)
         }
 
     }
 }
+/** One school's books on a sideways-scrolling shelf, under the school's name. */
 @Composable
 fun BookShelf(
     schoolName: String,
     books: List<BookEntity>,
     onBooksClick: (BookEntity) -> Unit
-    ) {
+) {
     Column(
         modifier = Modifier
             .padding(vertical = 10.dp)
@@ -327,7 +388,7 @@ fun BookShelf(
                 .padding(horizontal = 10.dp, vertical = 4.dp)
         )
         LazyRow(contentPadding = PaddingValues(horizontal = 10.dp)) {
-            items(books) { book ->
+            items(books, key = { book -> book.bookId }) { book ->
                 BookCover(
                     title = book.title,
                     author = book.author,
@@ -352,7 +413,9 @@ fun CatalogScreenPreview() {
         CatalogScreen(
             books = previewBooks,
             query = "",
+            filter = AvailabilityFilter.ALL,
             onQueryChange = {},
+            onFilterChange = {},
             onReserve = { _, _, _ -> }
         )
     }
